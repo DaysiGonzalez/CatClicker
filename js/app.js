@@ -1,10 +1,16 @@
-const catsNames = ['Teddy', 'Cupcake', 'Pascal', 'Simba', 'Tiger']
+const catsNames = [
+	{name: 'Teddy', image: '6243090894_8b8dd862cd_z.jpg'},
+	{name: 'Cupcake', image: 'adorable-animal-cat-1643457.jpg'},
+	{name: 'Pascal', image: '38476480801_20b192ceff_k.jpg'},
+	{name: 'Simba', image: 'animal-cat-face-close-up-416160.jpg'},
+	{name: 'Tiger', image: 'animal-animal-photography-cat-57416.jpg'}
+];
 
 let catsList = document.createElement('ul');
 
 for (cat of catsNames) {
 	let catItem = document.createElement('li');
-	catItem.innerHTML = cat;
+	catItem.innerHTML = cat.name;
 	catsList.appendChild(catItem);
 }
 
