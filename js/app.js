@@ -7,6 +7,7 @@ const catsNames = [
 ];
 
 let catsList = document.createElement('ul');
+document.getElementById("cat-image").style.visibility = "hidden";
 
 for (cat of catsNames) {
 	let catItem = document.createElement('li');
@@ -20,9 +21,9 @@ for (cat of catsNames) {
 	catItem.appendChild(catSmallImage);
 	catItem.appendChild(catListName);
 
-
-	catItem.addEventListener('click', (function(catName, catImg){
+catItem.addEventListener('click', (function(catName, catImg){
 		return function() {
+			document.getElementById("cat-image").style.visibility = "visible";
 			document.getElementById('cat-clicks').innerHTML = "0 clicks"
 			document.getElementById('cat-info').innerHTML = catName;
 			document.getElementById('cat-image').src = catImg;
