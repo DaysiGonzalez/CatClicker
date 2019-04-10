@@ -1,10 +1,6 @@
-#cat-info {
+.cat-info {
     font-family: 'Amatic SC';
     font-weight: 300;
-}
-
-#kitty {
-	width: 100%;
 }
 
 img{
@@ -23,8 +19,7 @@ img{
   margin-right: auto;
 }
 
-.firstCat,
-.secondCat {
+.cat-image {
   width: 50%;
   height: 400px;
 }
