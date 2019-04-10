@@ -10,7 +10,15 @@ let catsList = document.createElement('ul');
 
 for (cat of catsNames) {
 	let catItem = document.createElement('li');
-	catItem.innerHTML = cat.name;
+	let catListName = document.createElement('h3');
+	catListName.innerHTML = cat.name;
+
+	let catSmallImage = document.createElement('img');
+	catSmallImage.src = cat.image;
+	catSmallImage.classList.add('small-image');
+
+	catItem.appendChild(catSmallImage);
+	catItem.appendChild(catListName);
 
 
 	catItem.addEventListener('click', (function(catName, catImg){
@@ -31,8 +39,6 @@ for (cat of catsNames) {
 	})(cat.name, cat.image));
 
 	catsList.appendChild(catItem);
-
-
 }
 
 document.getElementById('cat-list').appendChild(catsList);
