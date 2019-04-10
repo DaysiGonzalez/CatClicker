@@ -1,9 +1,9 @@
 const catsNames = [
-	{name: 'Teddy', image: '6243090894_8b8dd862cd_z.jpg'},
-	{name: 'Cupcake', image: 'adorable-animal-cat-1643457.jpg'},
-	{name: 'Pascal', image: '38476480801_20b192ceff_k.jpg'},
-	{name: 'Simba', image: 'animal-cat-face-close-up-416160.jpg'},
-	{name: 'Tiger', image: 'animal-animal-photography-cat-57416.jpg'}
+	{name: 'Teddy', image: 'images/6243090894_8b8dd862cd_z.jpg'},
+	{name: 'Cupcake', image: 'images/adorable-animal-cat-1643457.jpg'},
+	{name: 'Pascal', image: 'images/38476480801_20b192ceff_k.jpg'},
+	{name: 'Simba', image: 'images/animal-cat-face-close-up-416160.jpg'},
+	{name: 'Tiger', image: 'images/animal-animal-photography-cat-57416.jpg'}
 ];
 
 let catsList = document.createElement('ul');
@@ -11,7 +11,18 @@ let catsList = document.createElement('ul');
 for (cat of catsNames) {
 	let catItem = document.createElement('li');
 	catItem.innerHTML = cat.name;
+
+	catItem.addEventListener('click', (function(catName, catImg){
+		return function() {
+			console.log(document.getElementById('cat-info'));
+			document.getElementById('cat-info').innerHTML = catName;
+			document.getElementById('cat-image').src = catImg;
+		};
+	})(cat.name, cat.image));
+
 	catsList.appendChild(catItem);
+
+
 }
 
 document.getElementById('cat-list').appendChild(catsList);
