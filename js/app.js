@@ -12,11 +12,21 @@ for (cat of catsNames) {
 	let catItem = document.createElement('li');
 	catItem.innerHTML = cat.name;
 
+
 	catItem.addEventListener('click', (function(catName, catImg){
 		return function() {
-			console.log(document.getElementById('cat-info'));
+			document.getElementById('cat-clicks').innerHTML = "0 clicks"
 			document.getElementById('cat-info').innerHTML = catName;
 			document.getElementById('cat-image').src = catImg;
+
+			let clicks = 0;
+
+			document.getElementById('cat-image').addEventListener('click', function(){
+				clicks++;
+				document.getElementById('cat-clicks').innerHTML = clicks + ' clicks';
+			});
+
+
 		};
 	})(cat.name, cat.image));
 
