@@ -1,6 +1,7 @@
-.cat-info {
+.title {
     font-family: 'Amatic SC';
     font-weight: 300;
+    text-align: center;
 }
 
 img{
@@ -23,13 +24,21 @@ img{
 }
 
 ul {
-  list-style-type: none;
-  width: 500px;
+  padding: 0;
+    width: 100%;
+    list-style: none;
+    text-align: left;
+    display: inline-block;
 }
 
 li {
   padding: 10px;
   overflow: auto;
+  max-width: 100%;
+}
+
+h3{
+  width: 100%;
 }
 
 .small-image{
