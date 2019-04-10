@@ -1,20 +1,27 @@
-let firstCatClicks = 0;
-let secondCatClicks = 0;
-let firstCatName = 'George';
-let secondCatName = 'Willy';
+const catsNames = ['Teddy', 'Cupcake', 'Pascal', 'Simba', 'Tiger']
 
-var firstCatImage = document.getElementById('first-cat-image');
-var secondCatImage = document.getElementById('second-cat-image');
+let catsList = document.createElement('ul');
 
-document.getElementById("first-cat-info").innerHTML = firstCatName + ': 0';
-document.getElementById("second-cat-info").innerHTML = secondCatName + ': 0';
+for (cat of catsNames) {
+	let catItem = document.createElement('li');
+	catItem.innerHTML = cat;
+	catsList.appendChild(catItem);
+}
 
-firstCatImage.addEventListener('click', function(){
-	firstCatClicks++;
-	document.getElementById("first-cat-info").innerHTML = firstCatName + ': ' + firstCatClicks;
-}, false);
+document.getElementById('cat-list').appendChild(catsList);
 
-secondCatImage.addEventListener('click', function(){
-	secondCatClicks++;
-	document.getElementById("second-cat-info").innerHTML = secondCatName + ': ' + secondCatClicks;
-}, false);
+// var firstCatImage = document.getElementById('first-cat-image');
+// var secondCatImage = document.getElementById('second-cat-image');
+//
+// document.getElementById("first-cat-info").innerHTML = firstCatName + ': 0';
+// document.getElementById("second-cat-info").innerHTML = secondCatName + ': 0';
+//
+// firstCatImage.addEventListener('click', function(){
+// 	firstCatClicks++;
+// 	document.getElementById("first-cat-info").innerHTML = firstCatName + ': ' + firstCatClicks;
+// }, false);
+//
+// secondCatImage.addEventListener('click', function(){
+// 	secondCatClicks++;
+// 	document.getElementById("second-cat-info").innerHTML = secondCatName + ': ' + secondCatClicks;
+// }, false);
