@@ -1,45 +1,116 @@
-const catsNames = [
-	{name: 'Teddy', image: 'images/6243090894_8b8dd862cd_z.jpg'},
-	{name: 'Cupcake', image: 'images/adorable-animal-cat-1643457.jpg'},
-	{name: 'Pascal', image: 'images/38476480801_20b192ceff_k.jpg'},
-	{name: 'Simba', image: 'images/animal-cat-face-close-up-416160.jpg'},
-	{name: 'Tiger', image: 'images/animal-animal-photography-cat-57416.jpg'}
-];
+var model = {
+	currentCat: null,
+	catsNames: [
+		{
+			name: 'Teddy',
+			image: 'images/6243090894_8b8dd862cd_z.jpg',
+			clicks: 0
+		},
+		{
+			name: 'Cupcake',
+			image: 'images/adorable-animal-cat-1643457.jpg',
+			clicks: 0
+		},
+		{
+			name: 'Pascal',
+			image: 'images/38476480801_20b192ceff_k.jpg',
+			clicks: 0
+		},
+		{
+			name: 'Simba',
+			image: 'images/animal-cat-face-close-up-416160.jpg',
+			clicks: 0
+		},
+		{
+			name: 'Tiger',
+			image: 'images/animal-animal-photography-cat-57416.jpg',
+			clicks: 0
+		}
+	]
+};
 
-let catsList = document.createElement('ul');
-document.getElementById("cat-image").style.visibility = "hidden";
+var octopus = {
+	init: function(){
+		model.currentCat = model.catsNames[0];
+		catListView.init();
+		catView.init();
+	},
 
-for (cat of catsNames) {
-	let catItem = document.createElement('li');
-	let catListName = document.createElement('h3');
-	catListName.innerHTML = cat.name;
+	getCurrentCat: function(){
+		return model.currentCat;
+	},
 
-	let catSmallImage = document.createElement('img');
-	catSmallImage.src = cat.image;
-	catSmallImage.classList.add('small-image');
+	getCats: function(){
+		return model.catsNames;
+	},
 
-	catItem.appendChild(catSmallImage);
-	catItem.appendChild(catListName);
+	setCurrentCat: function(cat){
+		model.currentCat = cat;
+	},
 
-catItem.addEventListener('click', (function(catName, catImg){
-		return function() {
-			document.getElementById("cat-image").style.visibility = "visible";
-			document.getElementById('cat-clicks').innerHTML = "0 clicks"
-			document.getElementById('cat-info').innerHTML = catName;
-			document.getElementById('cat-image').src = catImg;
+	incrementCounter: function(){
+		model.currentCat.clicks++;
+		catView.render();
+	}
+};
 
-			let clicks = 0;
+var catListView = {
+	init: function (){
+		this.catsList = document.getElementById('cat-list');
+		this.render();
+	},
 
-			document.getElementById('cat-image').addEventListener('click', function(){
-				clicks++;
-				document.getElementById('cat-clicks').innerHTML = clicks + ' clicks';
-			});
+	render: function(){
+		let cat;
+		let cats = octopus.getCats();
+		this.catsList.innerHTML = '';
 
+		for (cCat of cats) {
+			cat = cCat;
 
-		};
-	})(cat.name, cat.image));
+			let catItem = document.createElement('li');
+			let catListName = document.createElement('h3');
+			let catSmallImage = document.createElement('img');
 
-	catsList.appendChild(catItem);
-}
+			catListName.innerHTML = cat.name;
+			catSmallImage.src = cat.image;
+			catSmallImage.classList.add('small-image');
 
-document.getElementById('cat-list').appendChild(catsList);
+			catItem.appendChild(catSmallImage);
+			catItem.appendChild(catListName);
+
+			catItem.addEventListener('click', (function(catCopy){
+					return function(){
+						octopus.setCurrentCat(catCopy);
+						catView.render();
+					}
+			})(cat));
+			this.catsList.appendChild(catItem);
+		}
+	}
+};
+
+var catView = {
+	init: function(){
+		this.catElem = document.getElementById('visible-cat');
+		this.catNameElem = document.getElementById('cat-info');
+		this.catImageElem = document.getElementById("cat-image");
+		this.catCountElem = document.getElementById('cat-clicks');
+
+		this.catImageElem.addEventListener('click', function(){
+			octopus.incrementCounter();
+		});
+
+		this.render();
+	},
+
+	render: function(){
+		let currentCat = octopus.getCurrentCat();
+		this.catCountElem.innerHTML = currentCat.clicks;
+		this.catNameElem.innerHTML = currentCat.name;
+		this.catImageElem.src = currentCat.image;
+	}
+
+};
+
+octopus.init();
